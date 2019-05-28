@@ -15,6 +15,8 @@
 
 ### 架构图
 
+![image.png](https://gw.alipayobjects.com/mdn/rms_1a1552/afts/img/A*WQJ1Rpw_w3UAAAAAAAAAAABkARQnAQ)
+
 ### 任务
 
 #### 1、任务准备
