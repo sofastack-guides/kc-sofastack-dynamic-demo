@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>kc-sofastack-dynamic-demo</artifactId>
+        <groupId>io.sofastack</groupId>
+        <version>1.0.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>kc-sofastack-ark-biz-master</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alipay.sofa</groupId>
+            <artifactId>runtime-sofa-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alipay.sofa</groupId>
+            <artifactId>healthcheck-sofa-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.sofastack</groupId>
+            <artifactId>kc-sofastack-ark-biz-facade</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alipay.sofa</groupId>
+            <artifactId>sofa-dashboard-client</artifactId>
+        </dependency>
+        <dependency>
+            <artifactId>curator-client</artifactId>
+            <groupId>org.apache.curator</groupId>
+        </dependency>
+        <dependency>
+            <artifactId>curator-framework</artifactId>
+            <groupId>org.apache.curator</groupId>
+        </dependency>
+
+
+        <!-- 1、引入 ark 相关插件 -->
+
+
+        <!-- 2、引入 ark-biz-provider -->
+
+
+    </dependencies>
+    <!-- java.lang.ClassNotFoundException: org.apache.maven.plugin.surefire.log.api.ConsoleLogger -->
+    <build>
+        <plugins>
+            <!-- 配置 ark 打包插件-->
+
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.21.0</version>
+                <configuration>
+                    <forkCount>1</forkCount>
+                    <reuseForks>false</reuseForks>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

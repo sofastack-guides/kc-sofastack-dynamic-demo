@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<packaging>pom</packaging>
+	<modules>
+		<module>kc-sofastack-ark-biz-facade</module>
+		<module>kc-sofastack-ark-biz-provider</module>
+		<module>kc-sofastack-ark-biz-master</module>
+	</modules>
+	<parent>
+		<groupId>com.alipay.sofa</groupId>
+		<artifactId>sofaboot-dependencies</artifactId>
+		<version>3.1.4-SNAPSHOT</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>io.sofastack</groupId>
+	<artifactId>kc-sofastack-dynamic-demo</artifactId>
+	<version>1.0.0</version>
+	<name>kc-sofastack-dynamic-demo</name>
+	<description>Demo project for SofaStack Dynamic Module</description>
+
+	<properties>
+		<java.version>1.8</java.version>
+		<ark.version>0.6.0</ark.version>
+		<dashboard.client>1.0.0</dashboard.client>
+		<curator.version>2.9.1</curator.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>io.sofastack</groupId>
+				<artifactId>kc-sofastack-ark-biz-facade</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.alipay.sofa</groupId>
+				<artifactId>sofa-dashboard-client</artifactId>
+				<version>${dashboard.client}</version>
+			</dependency>
+
+			<!-- 引用ark web插件-->
+			<dependency>
+				<groupId>com.alipay.sofa</groupId>
+				<artifactId>web-ark-plugin</artifactId>
+				<version>${ark.version}</version>
+			</dependency>
+
+			<!-- 引用ark 配置推送扩展插件-->
+			<dependency>
+				<groupId>com.alipay.sofa</groupId>
+				<artifactId>config-ark-plugin</artifactId>
+				<version>${ark.version}</version>
+			</dependency>
+
+			<dependency>
+				<artifactId>curator-client</artifactId>
+				<groupId>org.apache.curator</groupId>
+				<version>${curator.version}</version>
+			</dependency>
+			<dependency>
+				<artifactId>curator-framework</artifactId>
+				<groupId>org.apache.curator</groupId>
+				<version>${curator.version}</version>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.googlecode.maven-java-formatter-plugin</groupId>
+				<artifactId>maven-java-formatter-plugin</artifactId>
+				<version>0.4</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>format</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<configFile>${user.dir}/formatter.xml</configFile>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
