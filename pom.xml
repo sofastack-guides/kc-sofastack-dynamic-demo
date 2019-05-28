@@ -7,6 +7,7 @@
 		<module>kc-sofastack-ark-biz-facade</module>
 		<module>kc-sofastack-ark-biz-provider</module>
 		<module>kc-sofastack-ark-biz-master</module>
+		<module>kc-sofastack-ark-biz-provider-two</module>
 	</modules>
 	<parent>
 		<groupId>com.alipay.sofa</groupId>
