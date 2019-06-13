@@ -104,7 +104,7 @@ git clone https://github.com/sofastack-guides/kc-sofastack-dynamic-demo.git
 ```xml
 <dependency>
   <groupId>io.sofastack</groupId>
-  <artifactId>kc-sofastack-ark-biz-provider</artifactId>
+  <artifactId>dynamic-provider</artifactId>
   <version>1.0.0</version>
   <classifier>ark-biz</classifier>
 </dependency>
