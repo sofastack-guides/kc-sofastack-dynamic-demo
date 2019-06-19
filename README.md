@@ -1,29 +1,28 @@
-## SOFABoot 动态模块实践
+# SOFABoot 动态模块实践
 
-### 实验背景
+## 实验背景
 
-对于每个用户而言，购买商品的次数也就体现了用户对于该商品的兴趣程度。对于目前的电商网站或者信息流网站，
-绝大多数都会基于此来推荐相应的商品或者信息给用户。这就是我们通常说的千人千面。
+[kc-sofastack-demo](https://github.com/sofastack-guides/kc-sofastack-demo) 分享中已经通过 SOFAStack 快速构建了一个电商微服务应用，
+并且完成了对应用服务调用链路的跟踪及应用状态的监控。
 
-本案例将通过 SOFABoot 的动态模块能力，来实现根据用户购买商品的次数来对商品展示的排序顺序进行改变。
+在电商系统中，平台方往往不会满足商品的自然排序展示，必定会根据某种规则来将部分商品放置在列表最瞩目的地方，
+当然也可能是平台方通过收集用户行为动态的为每个不同的用户推荐不同的商品展示列表。
 
+本实验背景就是基于[kc-sofastack-demo](https://github.com/sofastack-guides/kc-sofastack-demo)的基础上，
+根据现场同学对每个商品的购买总数（通过订单统计）来对商品列表进行动态排序。
 
-### 实验内容
+## 实验内容
 
-本实验基于 SOFADashboard 完成 SOFABoot 动态模块实践：
+通过 SOFABoot 提供的动态模块能力及 SOFADashboard 的动态模块管控能力，实现商品列表排序策略的动态变更。通过在不重启宿主机，不更改应用配置的情况下实现
+应用行为的改变。
 
-* 打包动态模块
-* 宿主应用改造
-* SOFADashboard 推送命令，改变商品展示顺序
+* 项目工程架构图如下
 
+![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*ECEjR5hY0h0AAAAAAAAAAABkARQnAQ)
 
-### 架构图
+## 任务
 
-![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*6cqeRrAINH8AAAAAAAAAAABkARQnAQ)
-
-### 任务
-
-#### 1、任务准备
+### 1、任务准备
 
 从 github 上将 demo 工程克隆到本地
 
@@ -33,13 +32,13 @@ git clone https://github.com/sofastack-guides/kc-sofastack-dynamic-demo.git
 
 然后将工程导入到 IDEA 或者 eclipse。
 
-#### 2、将 SOFABoot 应用打包成 ark 包
+### 2、将 SOFABoot 应用打包成 ark 包
 
 在下图所示的工程 pom 配置中，增加 ark 打包插件，并进行配置：
 
-![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*YuB-SrpOc5UAAAAAAAAAAABkARQnAQ)
+![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*2cpXQJMZ8X8AAAAAAAAAAABkARQnAQ)
 
-- step1 : 将 ark 打包插件及配置粘贴在上图指定位置中
+#### step1 : 将 ark 打包插件及配置粘贴在上图指定位置中
 
 ```xml
 <plugin>
@@ -70,17 +69,17 @@ git clone https://github.com/sofastack-guides/kc-sofastack-dynamic-demo.git
 </plugin>
 ```
 
-- step2 : 配置完成之后，执行 mvn clean package 进行 打包，成功之后如下图所示
+#### step2 : 配置完成之后，执行 mvn clean package 进行 打包，成功之后如下图所示
 
-![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*yFKBR5A5gocAAAAAAAAAAABkARQnAQ)
+![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*X1exTbM3r3cAAAAAAAAAAABkARQnAQ)
 
-#### 3、构建宿主应用
+### 3、构建宿主应用
 
-在已下载下来的工程中，stock-mng 作为实验的宿主应用工程模型。通过此任务，将 stock-mng  构建成为 动态模块的宿主应用。
+在已下载下来的工程中，dynamic-stock-mng 作为实验的宿主应用工程模型。通过此任务，将 dynamic-stock-mng  构建成为动态模块的宿主应用。
 
-- step1 : 引入 ark 动态配置依赖
+#### step1 : 引入 ark 动态配置依赖金和配置打包插件
 
-![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*Y14MQ7omf7YAAAAAAAAAAABkARQnAQ)
+![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*lM_1SoNIXIYAAAAAAAAAAABkARQnAQ)
 
 1、SOFAArk 相关依赖
 
@@ -97,11 +96,6 @@ git clone https://github.com/sofastack-guides/kc-sofastack-dynamic-demo.git
   <groupId>com.alipay.sofa</groupId>
   <artifactId>config-ark-plugin</artifactId>
 </dependency>
-```
-
-2、provider 依赖
-
-```xml
 <dependency>
   <groupId>io.sofastack</groupId>
   <artifactId>dynamic-provider</artifactId>
@@ -109,25 +103,7 @@ git clone https://github.com/sofastack-guides/kc-sofastack-dynamic-demo.git
   <classifier>ark-biz</classifier>
 </dependency>
 ```
-
-- step2 : 动态模块配置
-
-在工程根目录结构下的 /conf/ark/bootstrap.properties 配置文件中添加如下配置
-
-```properties
-# 日志根目录
-logging.path=./logs
-# 配置服务器地址
-com.alipay.sofa.ark.config.address=zookeeper://zookeeper-1-dev.sofastack.tech:2181
-# 宿主应用名
-com.alipay.sofa.ark.master.biz=stock-mng
-```
-
-- step3 : 配置 ark 打包插件
-
-![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*N9peTqFpzloAAAAAAAAAAABkARQnAQ)
-
-将如下插件打包配置粘贴至上图指定位置
+2、宿主应用打包插件
 
 ```xml
 <plugin>
@@ -150,7 +126,26 @@ com.alipay.sofa.ark.master.biz=stock-mng
 </plugin>
 ```
 
-- step4 ： 宿主应用 stock-mng  resource/application.properties 配置文件中添加如下配置项
+
+
+#### step2 : 宿主应用配置
+
+**1、动态模块配置**
+ 
+ 在 /conf/ark/bootstrap.properties 配置文件中添加配置如下：
+
+```properties
+# 日志根目录
+logging.path=./logs
+# 配置服务器地址
+com.alipay.sofa.ark.config.address=zookeeper://zookeeper-1-dev.sofastack.tech:2181
+# 宿主应用名
+com.alipay.sofa.ark.master.biz=stock-mng
+```
+
+**2、 宿主应用配置**
+ 
+ 在 dynamic-stock-mng 的 resource/application.properties 配置文件中添加配置如下：
 
 ```properties
 #dashboard client config
@@ -163,15 +158,15 @@ com.alipay.sofa.boot.skip-jvm-reference-health-check=true
 #### 4、打包宿主应用 & 启动
 
 - step 1 ： mvn clean package 打包
-- step2 ： 启动宿主应用 
+- step 2 ： 启动宿主应用 
 
 ```bash
- java -jar stock-mng/target/stock-mng-0.0.1-SNAPSHOT.jar 
+ java -jar dynamic-stock-mng/target/dynamic-stock-mng-1.0.0.jar
 ```
 
 启动成功之后日志信息如下：
 
-![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*I2gvQJ4F4m4AAAAAAAAAAABkARQnAQ)
+![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*3N_nS6P223IAAAAAAAAAAABkARQnAQ)
 
 #### 5、Dashboard 管控端注册插件信息
 
@@ -196,16 +191,16 @@ com.alipay.sofa.boot.skip-jvm-reference-health-check=true
 
 ![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*9gkxSoxPnqUAAAAAAAAAAABkARQnAQ)
 
-在执行安装之前，可以 先访问下 http://localhost:8080/#list ，此处因为还没有模块提供 jvm 服务，因此展示的是默认的排序顺序，如下所示：
+在执行安装之前，可以 先访问下 http://localhost:8080 ，此处因为还没有模块提供 jvm 服务，因此展示的是默认的排序顺序，如下所示：
 
-![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*I0T_QrXOejoAAAAAAAAAAABkARQnAQ)
+![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*cKbZQIpM7GkAAAAAAAAAAABkARQnAQ)
 
 然后点击安装，延迟1~2s之后，状态变更为 ACTIVATED ，为激活状态
 
 ![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*Eft7SbV1xFEAAAAAAAAAAABkARQnAQ)
 
-此时再次访问 http://localhost:8080/#list 地址，结果如下：
+此时再次访问 http://localhost:8080 ，结果如下：
 
-![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*o-a2QKxejnIAAAAAAAAAAABkARQnAQ)
+![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*rG8aTKl7g6MAAAAAAAAAAABkARQnAQ)
 
 
