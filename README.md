@@ -143,12 +143,11 @@ com.alipay.sofa.ark.config.address=zookeeper://zookeeper-1-dev.sofastack.tech:21
 com.alipay.sofa.ark.master.biz=stock-mng
 ```
 
-**2、 宿主应用配置**
+**2、 Dashboard 客户端配置**
  
  在 dynamic-stock-mng 的 resource/application.properties 配置文件中添加配置如下：
 
 ```properties
-#dashboard client config
 management.endpoints.web.exposure.include=*
 com.alipay.sofa.dashboard.zookeeper.address=zookeeper-1-dev.sofastack.tech:2181
 #skip jvm health check to startup host-app
