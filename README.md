@@ -143,7 +143,7 @@ git clone https://github.com/sofastack-guides/kc-sofastack-dynamic-demo.git
     com.alipay.sofa.ark.master.biz=stock-mng
     ```
 
-* 2、 Dashboard 客户端配置
+* Dashboard 客户端配置
  
     在 dynamic-stock-mng 的 resource/application.properties 配置文件中添加配置如下：
     
