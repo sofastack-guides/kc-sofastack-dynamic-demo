@@ -203,3 +203,5 @@ com.alipay.sofa.boot.skip-jvm-reference-health-check=true
 ![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*rG8aTKl7g6MAAAAAAAAAAABkARQnAQ)
 
 
+> 此结果仅供参考，排序结果随商品对应的订单量而动态改变
+
