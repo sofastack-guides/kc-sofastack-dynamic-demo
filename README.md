@@ -81,78 +81,78 @@ git clone https://github.com/sofastack-guides/kc-sofastack-dynamic-demo.git
 
 ![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*lM_1SoNIXIYAAAAAAAAAAABkARQnAQ)
 
-1、SOFAArk 相关依赖
+* SOFAArk 相关依赖
 
-```xml
-<dependency>
-  <groupId>com.alipay.sofa</groupId>
-  <artifactId>sofa-ark-springboot-starter</artifactId>
-</dependency>
-<dependency>
-  <groupId>com.alipay.sofa</groupId>
-  <artifactId>web-ark-plugin</artifactId>
-</dependency>
-<dependency>
-  <groupId>com.alipay.sofa</groupId>
-  <artifactId>config-ark-plugin</artifactId>
-</dependency>
-<dependency>
-  <groupId>io.sofastack</groupId>
-  <artifactId>dynamic-provider</artifactId>
-  <version>1.0.0</version>
-  <classifier>ark-biz</classifier>
-</dependency>
-```
-2、宿主应用打包插件
+    ```xml
+    <dependency>
+      <groupId>com.alipay.sofa</groupId>
+      <artifactId>sofa-ark-springboot-starter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.alipay.sofa</groupId>
+      <artifactId>web-ark-plugin</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.alipay.sofa</groupId>
+      <artifactId>config-ark-plugin</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.sofastack</groupId>
+      <artifactId>dynamic-provider</artifactId>
+      <version>1.0.0</version>
+      <classifier>ark-biz</classifier>
+    </dependency>
+    ```
+* 宿主应用打包插件
 
-```xml
-<plugin>
-	<groupId>com.alipay.sofa</groupId>
-  <artifactId>sofa-ark-maven-plugin</artifactId>
-  <version>0.6.0</version>
-  <executions>
-    <execution>
-      <id>default-cli</id>
-      <goals>
-        <goal>repackage</goal>
-      </goals>
-    </execution>
-  </executions>
-  <configuration>
-    <priority>100</priority>
-    <baseDir>../</baseDir>
-    <bizName>stock-mng</bizName>
-  </configuration>
-</plugin>
-```
+    ```xml
+    <plugin>
+        <groupId>com.alipay.sofa</groupId>
+      <artifactId>sofa-ark-maven-plugin</artifactId>
+      <version>0.6.0</version>
+      <executions>
+        <execution>
+          <id>default-cli</id>
+          <goals>
+            <goal>repackage</goal>
+          </goals>
+        </execution>
+      </executions>
+      <configuration>
+        <priority>100</priority>
+        <baseDir>../</baseDir>
+        <bizName>stock-mng</bizName>
+      </configuration>
+    </plugin>
+    ```
 
 
 
 #### step2 : 宿主应用配置
 
-**1、动态模块配置**
+* 动态模块配置
  
- 在 /conf/ark/bootstrap.properties 配置文件中添加配置如下：
+    在 /conf/ark/bootstrap.properties 配置文件中添加配置如下：
+    
+    ```properties
+    # 日志根目录
+    logging.path=./logs
+    # 配置服务器地址
+    com.alipay.sofa.ark.config.address=zookeeper://zookeeper-1-dev.sofastack.tech:2181
+    # 宿主应用名
+    com.alipay.sofa.ark.master.biz=stock-mng
+    ```
 
-```properties
-# 日志根目录
-logging.path=./logs
-# 配置服务器地址
-com.alipay.sofa.ark.config.address=zookeeper://zookeeper-1-dev.sofastack.tech:2181
-# 宿主应用名
-com.alipay.sofa.ark.master.biz=stock-mng
-```
-
-**2、 Dashboard 客户端配置**
+* 2、 Dashboard 客户端配置
  
- 在 dynamic-stock-mng 的 resource/application.properties 配置文件中添加配置如下：
-
-```properties
-management.endpoints.web.exposure.include=*
-com.alipay.sofa.dashboard.zookeeper.address=zookeeper-1-dev.sofastack.tech:2181
-#skip jvm health check to startup host-app
-com.alipay.sofa.boot.skip-jvm-reference-health-check=true
-```
+    在 dynamic-stock-mng 的 resource/application.properties 配置文件中添加配置如下：
+    
+    ```properties
+    management.endpoints.web.exposure.include=*
+    com.alipay.sofa.dashboard.zookeeper.address=zookeeper-1-dev.sofastack.tech:2181
+    #skip jvm health check to startup host-app
+    com.alipay.sofa.boot.skip-jvm-reference-health-check=true
+    ```
 
 ### 4、打包宿主应用 & 启动
 
