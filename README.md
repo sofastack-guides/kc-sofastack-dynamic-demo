@@ -154,7 +154,7 @@ com.alipay.sofa.dashboard.zookeeper.address=zookeeper-1-dev.sofastack.tech:2181
 com.alipay.sofa.boot.skip-jvm-reference-health-check=true
 ```
 
-#### 4、打包宿主应用 & 启动
+### 4、打包宿主应用 & 启动
 
 - step 1 ： mvn clean package 打包
 - step 2 ： 启动宿主应用 
@@ -167,24 +167,24 @@ com.alipay.sofa.boot.skip-jvm-reference-health-check=true
 
 ![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*3N_nS6P223IAAAAAAAAAAABkARQnAQ)
 
-#### 5、Dashboard 管控端注册插件信息
+### 5、Dashboard 管控端注册插件信息
 
 点击新建，弹出注册插件框，输入插件信息和描述信息，执行确定
 
 
 ![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*XIdOSrcQwF8AAAAAAAAAAABkARQnAQ)
 
-#### 6、Dashboard 管控端添加版本
+### 6、Dashboard 管控端添加版本
 
 此处需要填写文件的绝对路径或者对应的 url 资源地址，这里以 file 协议为例
 
 ![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*Mc6ITLOET4MAAAAAAAAAAABkARQnAQ)
 
-#### 7、Dashboard 管控端关联应用
+### 7、Dashboard 管控端关联应用
 
 ![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*PvnQR700gQ8AAAAAAAAAAABkARQnAQ)
 
-#### 8、查看详情 & 推送安装命令
+### 8、查看详情 & 推送安装命令
 
 点击上图中的 详情，进入插件详情页
 

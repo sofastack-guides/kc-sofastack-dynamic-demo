@@ -26,6 +26,8 @@
 		<ark.version>0.6.0</ark.version>
 		<dashboard.client>1.0.0</dashboard.client>
 		<curator.version>2.9.1</curator.version>
+		<mybatis.version>1.3.2</mybatis.version>
+		<mysql.version>5.1.46</mysql.version>
 	</properties>
 
 	<dependencies>
@@ -73,6 +75,23 @@
 				<artifactId>curator-framework</artifactId>
 				<groupId>org.apache.curator</groupId>
 				<version>${curator.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.mybatis.spring.boot</groupId>
+				<artifactId>mybatis-spring-boot-starter</artifactId>
+				<version>${mybatis.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${mysql.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>io.sofastack</groupId>
+				<artifactId>dynamic-facade</artifactId>
+				<version>${project.version}</version>
 			</dependency>
 
 		</dependencies>

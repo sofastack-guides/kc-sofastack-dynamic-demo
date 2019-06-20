@@ -15,24 +15,19 @@
         <dependency>
             <groupId>io.sofastack</groupId>
             <artifactId>dynamic-facade</artifactId>
-            <version>${project.version}</version>
         </dependency>
-
         <dependency>
             <groupId>com.alipay.sofa</groupId>
             <artifactId>runtime-sofa-boot-plugin</artifactId>
         </dependency>
-
         <dependency>
             <groupId>com.alipay.sofa</groupId>
             <artifactId>healthcheck-sofa-boot-starter</artifactId>
         </dependency>
-
         <dependency>
             <artifactId>curator-client</artifactId>
             <groupId>org.apache.curator</groupId>
         </dependency>
-
         <dependency>
             <artifactId>curator-framework</artifactId>
             <groupId>org.apache.curator</groupId>
