@@ -37,6 +37,7 @@ public class SortedStrategyImpl implements SortedStrategyFacade {
         try {
             String strategy = strategyService.strategy();
             Map<ProductInfo, Integer> map = new HashMap<>();
+            LOGGER.info("Begin to execute dynamic sort strategy,[strategy = " + strategy + "]");
             // 按照订单量排序
             if ("order".equals(strategy)) {
                 List<String> productCodes = stockMngMapper.queryAllProductCode();
@@ -48,13 +49,27 @@ public class SortedStrategyImpl implements SortedStrategyFacade {
                         map.put(productInfo, totalOrderCount);
                     }
                 }
+                printSorted(map);
                 result = CommonUtil.sorted(map);
+                result.forEach((productInfo)->{
+                    LOGGER.info(productInfo.getProductCode() +" -> ");
+                });
+
             }
         } catch (Throwable t) {
             LOGGER.error("Error to getSorted.", t);
             result = initProducts();
         }
         return result;
+    }
+
+    private void printSorted(Map<ProductInfo, Integer> map){
+        if (map.isEmpty()){
+            return;
+        }
+        map.keySet().forEach(productInfo -> {
+            LOGGER.info(productInfo.getProductCode() +" -> "+ map.get(productInfo));
+        });
     }
 
     private ProductInfo getProductInfoByCode(String productCode, List<ProductInfo> products) {
