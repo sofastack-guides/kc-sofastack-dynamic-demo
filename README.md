@@ -148,8 +148,11 @@ git clone https://github.com/sofastack-guides/kc-sofastack-dynamic-demo.git
     
 * 编号替换
     
-    分别将宿主应用 application.properties、动态模块配置文件 bootstrap.properties 以及宿主应用打包插件中的 {your-number} 修改为当前位置上的编号，
-    以此来作为一种隔离方式，避免大家是操作中产生冲突。
+    为了保证实验中各个宿主应用的独立性，在操作过程中，需要通过应用名来进行相应的隔离。将座位上对应的编号替换掉 {your-number} 占位符，主要由以下几处：
+    
+    - 宿主应用配置文件 application.properties
+    - 动态模块配置文件 bootstrap.properties 
+    - 宿主应用打包插件中
 
 ### 4、打包宿主应用 & 启动
 
