@@ -11,6 +11,7 @@ import java.util.List;
 public interface SortedStrategyFacade {
     /**
      * 获取排序后的商品列表
+     *
      * @return
      */
     List<ProductInfo> getSorted();

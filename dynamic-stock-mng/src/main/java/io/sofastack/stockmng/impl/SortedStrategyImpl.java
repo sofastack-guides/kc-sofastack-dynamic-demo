@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -51,8 +52,8 @@ public class SortedStrategyImpl implements SortedStrategyFacade {
                 }
                 printSorted(map);
                 result = CommonUtil.sorted(map);
-                result.forEach((productInfo)->{
-                    LOGGER.info(productInfo.getProductCode() +" -> ");
+                result.forEach((productInfo) -> {
+                    LOGGER.info(productInfo.getProductCode() + " -> ");
                 });
 
             }
@@ -63,12 +64,12 @@ public class SortedStrategyImpl implements SortedStrategyFacade {
         return result;
     }
 
-    private void printSorted(Map<ProductInfo, Integer> map){
-        if (map.isEmpty()){
+    private void printSorted(Map<ProductInfo, Integer> map) {
+        if (map.isEmpty()) {
             return;
         }
         map.keySet().forEach(productInfo -> {
-            LOGGER.info(productInfo.getProductCode() +" -> "+ map.get(productInfo));
+            LOGGER.info(productInfo.getProductCode() + " -> " + map.get(productInfo));
         });
     }
 
@@ -81,9 +82,14 @@ public class SortedStrategyImpl implements SortedStrategyFacade {
         return null;
     }
 
+    /**
+     * 初始化默认展示列表,为了实验效果，此处初始化的列表与实际列表是相反的，但是实际排序结果与现场购买订单直接挂钩
+     *
+     * @return
+     */
     private List<ProductInfo> initProducts() {
-        List<ProductInfo> products = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
+        List<ProductInfo> products = new ArrayList<>(5);
+        for (int i = 4; i >= 0; i--) {
             ProductInfo productInfo = new ProductInfo();
             productInfo.setName(DatabaseSeed.name[i]);
             productInfo.setDescription(DatabaseSeed.description[i]);

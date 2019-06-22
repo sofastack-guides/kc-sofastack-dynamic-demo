@@ -37,32 +37,7 @@
     <build>
         <plugins>
             <!--这里添加ark 打包插件-->
-            <plugin>
-                <groupId>com.alipay.sofa</groupId>
-                <artifactId>sofa-ark-maven-plugin</artifactId>
-                <version>0.6.0</version>
-                <executions>
-                    <execution>
-                        <!--goal executed to generate executable-ark-jar -->
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                        <!--ark-biz 包的打包配置  -->
-                        <configuration>
-                            <!--是否打包、安装和发布 ark biz，详细参考 Ark Biz 文档，默认为false-->
-                            <attach>true</attach>
-                            <!--ark 包和 ark biz 的打包存放目录，默认为工程 build 目录-->
-                            <outputDirectory>target</outputDirectory>
-                            <!--default none-->
-                            <arkClassifier>executable-ark</arkClassifier>
-                            <!-- ark-biz 包的启动优先级，值越小，优先级越高-->
-                            <priority>200</priority>
-                            <!--设置应用的根目录，用于读取 ${base.dir}/conf/ark/bootstrap.application 配置文件，默认为 ${project.basedir}-->
-                            <baseDir>../</baseDir>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+
         </plugins>
     </build>
 </project>
