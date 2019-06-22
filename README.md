@@ -77,7 +77,7 @@ git clone https://github.com/sofastack-guides/kc-sofastack-dynamic-demo.git
 
 在已下载下来的工程中，dynamic-stock-mng 作为实验的宿主应用工程模型。通过此任务，将 dynamic-stock-mng  构建成为动态模块的宿主应用。
 
-#### step1 : 引入 ark 动态配置依赖金和配置打包插件
+#### step1 : 引入 ark 动态配置依赖
 
 ![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*lM_1SoNIXIYAAAAAAAAAAABkARQnAQ)
 
@@ -95,12 +95,6 @@ git clone https://github.com/sofastack-guides/kc-sofastack-dynamic-demo.git
     <dependency>
       <groupId>com.alipay.sofa</groupId>
       <artifactId>config-ark-plugin</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>io.sofastack</groupId>
-      <artifactId>dynamic-provider</artifactId>
-      <version>1.0.0</version>
-      <classifier>ark-biz</classifier>
     </dependency>
     ```
 * 宿主应用打包插件
@@ -121,12 +115,10 @@ git clone https://github.com/sofastack-guides/kc-sofastack-dynamic-demo.git
       <configuration>
         <priority>100</priority>
         <baseDir>../</baseDir>
-        <bizName>stock-mng</bizName>
+        <bizName>stock-mng-{your-Number}</bizName>
       </configuration>
     </plugin>
     ```
-
-
 
 #### step2 : 宿主应用配置
 
@@ -140,7 +132,7 @@ git clone https://github.com/sofastack-guides/kc-sofastack-dynamic-demo.git
     # 配置服务器地址
     com.alipay.sofa.ark.config.address=zookeeper://139.224.121.76:2181,139.224.123.112:2181,139.224.124.17:2181
     # 宿主应用名
-    com.alipay.sofa.ark.master.biz=stock-mng
+    com.alipay.sofa.ark.master.biz=stock-mng-{your-Number}
     ```
 
 * Dashboard 客户端配置
@@ -153,6 +145,11 @@ git clone https://github.com/sofastack-guides/kc-sofastack-dynamic-demo.git
     #skip jvm health check to startup host-app
     com.alipay.sofa.boot.skip-jvm-reference-health-check=true
     ```
+    
+* 编号替换
+    
+    分别将宿主应用 application.properties、动态模块配置文件 bootstrap.properties 以及宿主应用打包插件中的 {your-number} 修改为当前位置上的编号，
+    以此来作为一种隔离方式，避免大家是操作中产生冲突。
 
 ### 4、打包宿主应用 & 启动
 
