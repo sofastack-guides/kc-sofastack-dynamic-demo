@@ -38,7 +38,7 @@ git clone https://github.com/sofastack-guides/kc-sofastack-dynamic-demo.git
 
 ![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*2cpXQJMZ8X8AAAAAAAAAAABkARQnAQ)
 
-#### step1 : 将 ark 打包插件及配置粘贴在上图指定位置中
+#### step1 : 将 ark 打包插件粘贴在上图指定位置
 
 ```xml
 <plugin>
@@ -69,7 +69,7 @@ git clone https://github.com/sofastack-guides/kc-sofastack-dynamic-demo.git
 </plugin>
 ```
 
-#### step2 : 配置完成之后，执行 mvn clean package 进行 打包，成功之后如下图所示
+#### step2 : 配置完成之后，执行 mvn clean package 进行打包，成功之后如下图所示：
 
 ![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*X1exTbM3r3cAAAAAAAAAAABkARQnAQ)
 
@@ -132,7 +132,7 @@ git clone https://github.com/sofastack-guides/kc-sofastack-dynamic-demo.git
     # 配置服务器地址
     com.alipay.sofa.ark.config.address=zookeeper://139.224.121.76:2181,139.224.123.112:2181,139.224.124.17:2181
     # 宿主应用名
-    com.alipay.sofa.ark.master.biz=stock-mng-{your-Number}
+    com.alipay.sofa.ark.master.biz=stock-mng-{your-number}
     ```
 
 * Dashboard 客户端配置
@@ -148,7 +148,7 @@ git clone https://github.com/sofastack-guides/kc-sofastack-dynamic-demo.git
     
 * 编号替换
     
-    为了保证实验中各个宿主应用的独立性，在操作过程中，需要通过应用名来进行相应的隔离。将座位上对应的编号替换掉 {your-number} 占位符，主要由以下几处：
+    为了保证实验中各个宿主应用的独立性，在操作过程中，需要通过应用名来进行相应的隔离。将座位上对应的编号替换掉 {your-number} 占位符，主要有以下几处：
     
     - 宿主应用配置文件 application.properties
     - 动态模块配置文件 bootstrap.properties 
