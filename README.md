@@ -42,13 +42,13 @@ git clone https://github.com/sofastack-guides/kc-sofastack-dynamic-demo.git
 
 如下图所示，对 dynamic-module/pom.xml 中的 artifactId 进行修改，将 {your-number} 修改为当前座位上的编号
 
-![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*2cpXQJMZ8X8AAAAAAAAAAABkARQnAQ)
+![image.png](https://gw.alipayobjects.com/mdn/rms_ff360b/afts/img/A*3aiqQpJL7VwAAAAAAAAAAABkARQnAQ)
 
 #### step2 : 配置动态模块的打包插件
 
 在 dynamic-module/pom.xml 中，增加 ark 打包插件，并进行配置：
 
-![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*2cpXQJMZ8X8AAAAAAAAAAABkARQnAQ)
+![image.png](https://gw.alipayobjects.com/mdn/rms_ff360b/afts/img/A*y2BvRKG14JUAAAAAAAAAAABkARQnAQ)
 
 
 ```xml
