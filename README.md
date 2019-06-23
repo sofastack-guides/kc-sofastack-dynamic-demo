@@ -80,12 +80,6 @@ git clone https://github.com/sofastack-guides/kc-sofastack-dynamic-demo.git
 </plugin>
 ```
 
-#### step3 : 配置完成之后，执行 mvn clean package 进行打包，成功之后如下图所示：
-
-![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*X1exTbM3r3cAAAAAAAAAAABkARQnAQ)
-
-> 比如如果你填写的 {your-number} 为 29 ，则打包成功之后，会生成 dynamic-module/target 目录下 生成 dynamic-provider-29-1.0.0-ark-biz.jar 文件
-
 ### 3、构建宿主应用
 
 在已下载下来的工程中，dynamic-stock-mng 作为实验的宿主应用工程模型。通过此任务，将 dynamic-stock-mng  构建成为动态模块的宿主应用。
@@ -181,10 +175,17 @@ git clone https://github.com/sofastack-guides/kc-sofastack-dynamic-demo.git
     spring.application.name=stock-mng-{your-number} 
     ```
 
-### 4、打包宿主应用 & 启动
+### 4、打包 & 启动宿主应用
 
-- step 1 ： mvn clean package 打包
-- step 2 ： 启动宿主应用 
+#### 执行 mvn clean package
+
+配置完成之后，执行 mvn clean package 进行打包，此时 dynamic-provider 会被打包成动态模块包，如下图所示：
+
+![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*X1exTbM3r3cAAAAAAAAAAABkARQnAQ)
+
+> 比如如果你填写的 {your-number} 为 29 ，则打包成功之后，会生成 dynamic-module/target 目录下 生成 dynamic-provider-29-1.0.0-ark-biz.jar 文件
+
+#### 启动宿主应用
 
 ```bash
  java -jar dynamic-stock-mng/target/dynamic-stock-mng-1.0.0.jar
