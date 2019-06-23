@@ -1,5 +1,8 @@
 # SOFABoot 动态模块实践
 
+* [实验背景](https://github.com/sofastack-guides/kc-sofastack-dynamic-demo#%E5%AE%9E%E9%AA%8C%E8%83%8C%E6%99%AF)
+* [实验内容](https://github.com/sofastack-guides/kc-sofastack-dynamic-demo#%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9)
+
 ## 实验背景
 
 [kc-sofastack-demo](https://github.com/sofastack-guides/kc-sofastack-demo) 分享中已经通过 SOFAStack 快速构建了一个电商微服务应用，
