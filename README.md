@@ -130,7 +130,7 @@ git clone https://github.com/sofastack-guides/kc-sofastack-dynamic-demo.git
     # 日志根目录
     logging.path=./logs
     # 配置服务器地址
-    com.alipay.sofa.ark.config.address=zookeeper://139.224.121.76:2181,139.224.123.112:2181,139.224.124.17:2181
+    com.alipay.sofa.ark.config.address=zookeeper://116.62.20.143:2181,116.62.148.186:2181,121.43.174.16:2181
     # 宿主应用名
     com.alipay.sofa.ark.master.biz=stock-mng-{your-number}
     ```
@@ -141,7 +141,7 @@ git clone https://github.com/sofastack-guides/kc-sofastack-dynamic-demo.git
     
     ```properties
     management.endpoints.web.exposure.include=*
-    com.alipay.sofa.dashboard.zookeeper.address=139.224.121.76:2181,139.224.123.112:2181,139.224.124.17:2181
+    com.alipay.sofa.dashboard.zookeeper.address=116.62.20.143:2181,116.62.148.186:2181,121.43.174.16:2181
     #skip jvm health check to startup host-app
     com.alipay.sofa.boot.skip-jvm-reference-health-check=true
     ```
