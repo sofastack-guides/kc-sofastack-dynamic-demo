@@ -181,9 +181,9 @@ git clone https://github.com/sofastack-guides/kc-sofastack-dynamic-demo.git
 
 配置完成之后，执行 mvn clean package 进行打包，此时 dynamic-provider 会被打包成动态模块包，如下图所示：
 
-![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*X1exTbM3r3cAAAAAAAAAAABkARQnAQ)
+![image.png](https://gw.alipayobjects.com/mdn/rms_ff360b/afts/img/A*c5enTa0foPsAAAAAAAAAAABkARQnAQ)
 
-> 比如如果你填写的 {your-number} 为 29 ，则打包成功之后，会生成 dynamic-module/target 目录下 生成 dynamic-provider-29-1.0.0-ark-biz.jar 文件
+> 比如如果你填写的 {your-number} 为 00 ，则打包成功之后，会生成 dynamic-module/target 目录下 生成 dynamic-provider-00-1.0.0-ark-biz.jar 文件
 
 #### 启动宿主应用
 
@@ -232,13 +232,13 @@ git clone https://github.com/sofastack-guides/kc-sofastack-dynamic-demo.git
 
 ### 6、查看详情 & 推送安装命令
 
-在完成上述操作之后，即可点击当前插件后面的详情，进入插件详情页
-
-![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*9gkxSoxPnqUAAAAAAAAAAABkARQnAQ)
-
 在执行安装之前，可以 先访问下 http://localhost:8080 ，此处因为还没有模块提供 jvm 服务，因此展示的是默认的排序顺序，如下所示：
 
 ![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*cKbZQIpM7GkAAAAAAAAAAABkARQnAQ)
+
+点击当前插件后面的详情，进入插件详情页
+
+![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*9gkxSoxPnqUAAAAAAAAAAABkARQnAQ)
 
 然后点击安装，延迟1~2s之后，状态变更为 ACTIVATED ，为激活状态
 
@@ -246,7 +246,7 @@ git clone https://github.com/sofastack-guides/kc-sofastack-dynamic-demo.git
 
 此时再次访问 http://localhost:8080 ，结果如下：
 
-![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*rG8aTKl7g6MAAAAAAAAAAABkARQnAQ)
+![image.png](https://gw.alipayobjects.com/mdn/rms_ff360b/afts/img/A*-34JS7hBxAcAAAAAAAAAAABkARQnAQ)
 
 
 > 此结果仅供参考，排序结果随商品对应的订单量而动态改变

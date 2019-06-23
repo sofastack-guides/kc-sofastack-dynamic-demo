@@ -50,27 +50,18 @@ public class SortedStrategyImpl implements SortedStrategyFacade {
                         map.put(productInfo, totalOrderCount);
                     }
                 }
-                printSorted(map);
                 result = CommonUtil.sorted(map);
                 result.forEach((productInfo) -> {
-                    LOGGER.info(productInfo.getProductCode() + " -> ");
+                    if (map.get(productInfo) != null){
+                        productInfo.setName(productInfo.getName()+"("+map.get(productInfo)+")");
+                    }
                 });
-
             }
         } catch (Throwable t) {
             LOGGER.error("Error to getSorted.", t);
             result = initProducts();
         }
         return result;
-    }
-
-    private void printSorted(Map<ProductInfo, Integer> map) {
-        if (map.isEmpty()) {
-            return;
-        }
-        map.keySet().forEach(productInfo -> {
-            LOGGER.info(productInfo.getProductCode() + " -> " + map.get(productInfo));
-        });
     }
 
     private ProductInfo getProductInfoByCode(String productCode, List<ProductInfo> products) {
