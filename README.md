@@ -34,11 +34,22 @@ git clone https://github.com/sofastack-guides/kc-sofastack-dynamic-demo.git
 
 ### 2、将 SOFABoot 应用打包成 ark 包
 
-在下图所示的工程 pom 配置中，增加 ark 打包插件，并进行配置：
+
+
+#### step1 : 修改动态模块名称
+
+> 在实际的应用场景中，不需要对其进行任何修改
+
+如下图所示，对 dynamic-module/pom.xml 中的 artifactId 进行修改，将 {your-number} 修改为当前座位上的编号
 
 ![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*2cpXQJMZ8X8AAAAAAAAAAABkARQnAQ)
 
-#### step1 : 将 ark 打包插件粘贴在上图指定位置
+#### step2 : 配置动态模块的打包插件
+
+在 dynamic-module/pom.xml 中，增加 ark 打包插件，并进行配置：
+
+![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*2cpXQJMZ8X8AAAAAAAAAAABkARQnAQ)
+
 
 ```xml
 <plugin>
@@ -69,15 +80,20 @@ git clone https://github.com/sofastack-guides/kc-sofastack-dynamic-demo.git
 </plugin>
 ```
 
-#### step2 : 配置完成之后，执行 mvn clean package 进行打包，成功之后如下图所示：
+#### step3 : 配置完成之后，执行 mvn clean package 进行打包，成功之后如下图所示：
 
 ![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*X1exTbM3r3cAAAAAAAAAAABkARQnAQ)
+
+> 比如如果你填写的 {your-number} 为 29 ，则打包成功之后，会生成 dynamic-module/target 目录下 生成 dynamic-provider-29-1.0.0-ark-biz.jar 文件
 
 ### 3、构建宿主应用
 
 在已下载下来的工程中，dynamic-stock-mng 作为实验的宿主应用工程模型。通过此任务，将 dynamic-stock-mng  构建成为动态模块的宿主应用。
 
-#### step1 : 引入 ark 动态配置依赖
+#### step1 : 引入动态模块依赖
+
+> 动态模块是通过 SOFAArk 组件来实现的，因此次数需要引入 SOFAArk 相关的依赖即可。关于 SOFAArk 可以参考[SOFABoot 类隔离](https://www.sofastack.tech/projects/sofa-boot/sofa-ark-readme/)
+一节进行了解。
 
 ![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*lM_1SoNIXIYAAAAAAAAAAABkARQnAQ)
 
@@ -96,7 +112,15 @@ git clone https://github.com/sofastack-guides/kc-sofastack-dynamic-demo.git
       <groupId>com.alipay.sofa</groupId>
       <artifactId>config-ark-plugin</artifactId>
     </dependency>
+      <dependency>
+         <groupId>io.sofastack</groupId>
+         <artifactId>dynamic-provider-{your-number}</artifactId>
+         <version>1.0.0</version>
+         <classifier>ark-biz</classifier>
+     </dependency>
     ```
+    将此配置文件中的 {your-number} 替换为当前座位编号
+    
 * 宿主应用打包插件
 
     ```xml
@@ -115,16 +139,18 @@ git clone https://github.com/sofastack-guides/kc-sofastack-dynamic-demo.git
       <configuration>
         <priority>100</priority>
         <baseDir>../</baseDir>
-        <bizName>stock-mng-{your-Number}</bizName>
+        <bizName>stock-mng-{your-number}</bizName>
       </configuration>
     </plugin>
     ```
+    
+    将打包插件中的 {your-number} 替换为当前座位上的编号，同样在实际的场景中是不需要的。这里是希望通过应用名来进行隔离，已达到各位在实际操作中不会相互干扰。
 
 #### step2 : 宿主应用配置
 
 * 动态模块配置
  
-    在 /conf/ark/bootstrap.properties 配置文件中添加配置如下：
+    在当前项目的根目录 /conf/ark/bootstrap.properties 配置文件中添加配置如下：
     
     ```properties
     # 日志根目录
@@ -134,8 +160,10 @@ git clone https://github.com/sofastack-guides/kc-sofastack-dynamic-demo.git
     # 宿主应用名
     com.alipay.sofa.ark.master.biz=stock-mng-{your-number}
     ```
+    com.alipay.sofa.ark.master.biz 配置项为指定的动态模块宿主应用的名称，需与宿主应用打包插件中的 bizName 配置项保持一致。
+    因此需要将 {your-number} 也替换为当前座位前的编号。
 
-* Dashboard 客户端配置
+* SOFADashboard 客户端配置
  
     在 dynamic-stock-mng 的 resource/application.properties 配置文件中添加配置如下：
     
@@ -146,13 +174,12 @@ git clone https://github.com/sofastack-guides/kc-sofastack-dynamic-demo.git
     com.alipay.sofa.boot.skip-jvm-reference-health-check=true
     ```
     
-* 编号替换
+    同时将此配置文件中的 {your-number} 替换为当前座位编号:
     
-    为了保证实验中各个宿主应用的独立性，在操作过程中，需要通过应用名来进行相应的隔离。将座位上对应的编号替换掉 {your-number} 占位符，主要有以下几处：
-    
-    - 宿主应用配置文件 application.properties
-    - 动态模块配置文件 bootstrap.properties 
-    - 宿主应用打包插件中
+    ```properties
+    # 替换 {your-number}  为当前座位编号
+    spring.application.name=stock-mng-{your-number} 
+    ```
 
 ### 4、打包宿主应用 & 启动
 
@@ -167,26 +194,43 @@ git clone https://github.com/sofastack-guides/kc-sofastack-dynamic-demo.git
 
 ![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*3N_nS6P223IAAAAAAAAAAABkARQnAQ)
 
-### 5、Dashboard 管控端注册插件信息
+### 5、SOFADashboard 管控端添加版本
 
-点击新建，弹出注册插件框，输入插件信息和描述信息，执行确定
+在实际的操作中，一般需要手动录入动态模块信息，本次 workshop 中为了方便大家操作，已经事先将00-99 100 个插件录入到了数据库中。
+因此打开插件面板，可以看下如下信息：
 
 
-![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*XIdOSrcQwF8AAAAAAAAAAABkARQnAQ)
+在查询框中输入你当前座位的编号，（例如你的编号为66）：
 
-### 6、Dashboard 管控端添加版本
+![image.png](https://gw.alipayobjects.com/mdn/rms_ff360b/afts/img/A*x836RaqJ9QkAAAAAAAAAAABkARQnAQ)
 
-此处需要填写文件的绝对路径或者对应的 url 资源地址，这里以 file 协议为例
+点击查询之后将会索引到你的插件，此时可以基于此插件进行应用关联和版本添加。
 
-![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*Mc6ITLOET4MAAAAAAAAAAABkARQnAQ)
+* 关联应用
 
-### 7、Dashboard 管控端关联应用
+点击关联应用，将插件绑定到宿主应用。此处的宿主应用名为 dynamic-stock-mng application.properties 中的 spring.application.name 的值，
+如 spring.application.name=stock-mng-66，则你当前操作的宿主应用名即为 stock-mng-66
 
-![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*PvnQR700gQ8AAAAAAAAAAABkARQnAQ)
+![image.png](https://gw.alipayobjects.com/mdn/rms_ff360b/afts/img/A*ZdXDS6YCQp4AAAAAAAAAAABkARQnAQ)
 
-### 8、查看详情 & 推送安装命令
+* 添加版本
 
-点击上图中的 详情，进入插件详情页
+    目前 SOFADashboard 支持两种协议的文件获取方式，一种是基于 http 协议的，一种是基于 file 协议的。基于 http 协议即你可以将自己的动态模块包放在一个http
+    服务器上，例如：http://ip:port/filePth 类型路径；基于 file 协议则是直接从文件系统获取动态模块包，例如：file://filePath。这里因为都是基于本地打包，所以使用 file
+    协议。
+    
+    ![image.png](https://gw.alipayobjects.com/mdn/rms_ff360b/afts/img/A*ce6hR79Z-eQAAAAAAAAAAABkARQnAQ)
+    
+    例如我打包之后的文件位于 /Users/guolei.sgl/Downloads/kubecon/kc-sofastack-dynamic-demo/dynamic-provider/target 目录下，则需要在添加版本中填入的文件地址为：
+    file:///Users/guolei.sgl/Downloads/kubecon/kc-sofastack-dynamic-demo/dynamic-provider/target/dynamic-provider-00-1.0.0-ark-biz.jar
+    
+    ![image.png](https://gw.alipayobjects.com/mdn/rms_ff360b/afts/img/A*b0wcQbCFOasAAAAAAAAAAABkARQnAQ)
+    
+    > dynamic-provider-00-1.0.0-ark-biz.jar 中 00 为你当前座位的编号
+
+### 6、查看详情 & 推送安装命令
+
+在完成上述操作之后，即可点击当前插件后面的详情，进入插件详情页
 
 ![image.png](https://gw.alipayobjects.com/mdn/rms_565baf/afts/img/A*9gkxSoxPnqUAAAAAAAAAAABkARQnAQ)
 

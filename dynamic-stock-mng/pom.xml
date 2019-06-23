@@ -46,13 +46,6 @@
             <artifactId>curator-framework</artifactId>
             <groupId>org.apache.curator</groupId>
         </dependency>
-        <dependency>
-            <groupId>io.sofastack</groupId>
-            <artifactId>dynamic-provider</artifactId>
-            <version>1.0.0</version>
-            <classifier>ark-biz</classifier>
-        </dependency>
-
         <!-- 这里添加动态模块相关依赖 -->
 
 
@@ -61,7 +54,6 @@
     <build>
         <plugins>
             <!-- 这里配置动态模块打包插件 -->
-
 
         </plugins>
     </build>
