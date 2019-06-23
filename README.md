@@ -200,6 +200,7 @@ git clone https://github.com/sofastack-guides/kc-sofastack-dynamic-demo.git
 在实际的操作中，一般需要手动录入动态模块信息，本次 workshop 中为了方便大家操作，已经事先将00-99 100 个插件录入到了数据库中。
 因此打开插件面板，可以看下如下信息：
 
+![image.png](https://gw.alipayobjects.com/mdn/rms_ff360b/afts/img/A*F-RGTLZJYj8AAAAAAAAAAABkARQnAQ)
 
 在查询框中输入你当前座位的编号，（例如你的编号为66）：
 
