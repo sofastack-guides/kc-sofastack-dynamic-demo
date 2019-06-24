@@ -61,7 +61,7 @@ git clone https://github.com/sofastack-guides/kc-sofastack-dynamic-demo.git
 
 #### step2 : 配置动态模块的打包插件
 
-在 dynamic-module/pom.xml 中，增加 ark 打包插件，并进行配置：
+在 dynamic-provider/pom.xml 中，增加 ark 打包插件，并进行配置：
 
 ![image.png](https://gw.alipayobjects.com/mdn/rms_ff360b/afts/img/A*y2BvRKG14JUAAAAAAAAAAABkARQnAQ)
 
