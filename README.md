@@ -213,7 +213,14 @@ git clone https://github.com/sofastack-guides/kc-sofastack-dynamic-demo.git
 ### 5、SOFADashboard 管控端添加版本
 
 在实际的操作中，一般需要手动录入动态模块信息，本次 workshop 中为了方便大家操作，已经事先将00-99 100 个插件录入到了数据库中。
-因此打开插件面板，可以看下如下信息：
+
+请先现场下载：`sofa-dashboard-web-1.0.0-SNAPSHOT.jar` 这个已经打包好的 sofa-dashborad 启动包。
+
+然后运行 `java -jar sofa-dashboard-web-1.0.0-SNAPSHOT.jar` 将它启动起来。
+
+我们访问 http://localhost:8099/ 看到 sofa-dashboard 界面。
+
+我们打开「Ark 管控 - 模块列表」菜单，可以看下如下信息：
 
 ![image.png](https://gw.alipayobjects.com/mdn/rms_ff360b/afts/img/A*F-RGTLZJYj8AAAAAAAAAAABkARQnAQ)
 
