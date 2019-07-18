@@ -1,19 +1,18 @@
 # SOFABoot 动态模块实践
 
-* [实验背景](https://github.com/sofastack-guides/kc-sofastack-dynamic-demo#%E5%AE%9E%E9%AA%8C%E8%83%8C%E6%99%AF)
-* [实验内容](https://github.com/sofastack-guides/kc-sofastack-dynamic-demo#%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9)
-* [任务](https://github.com/sofastack-guides/kc-sofastack-dynamic-demo#%E4%BB%BB%E5%8A%A1)
-    * [任务准备](https://github.com/sofastack-guides/kc-sofastack-dynamic-demo#1%E4%BB%BB%E5%8A%A1%E5%87%86%E5%A4%87)
-    * [将 SOFABoot 应用打包成 ark 包](https://github.com/sofastack-guides/kc-sofastack-dynamic-demo#2%E5%B0%86-sofaboot-%E5%BA%94%E7%94%A8%E6%89%93%E5%8C%85%E6%88%90-ark-%E5%8C%85)
-        * [修改动态模块名称](https://github.com/sofastack-guides/kc-sofastack-dynamic-demo#step1--%E4%BF%AE%E6%94%B9%E5%8A%A8%E6%80%81%E6%A8%A1%E5%9D%97%E5%90%8D%E7%A7%B0)
-        * [配置动态模块的打包插件](https://github.com/sofastack-guides/kc-sofastack-dynamic-demo#step2--%E9%85%8D%E7%BD%AE%E5%8A%A8%E6%80%81%E6%A8%A1%E5%9D%97%E7%9A%84%E6%89%93%E5%8C%85%E6%8F%92%E4%BB%B6)
-
-    * [构建宿主应用](https://github.com/sofastack-guides/kc-sofastack-dynamic-demo#3%E6%9E%84%E5%BB%BA%E5%AE%BF%E4%B8%BB%E5%BA%94%E7%94%A8)
-        * [引入动态模块依赖](https://github.com/sofastack-guides/kc-sofastack-dynamic-demo#step1--%E5%BC%95%E5%85%A5%E5%8A%A8%E6%80%81%E6%A8%A1%E5%9D%97%E4%BE%9D%E8%B5%96)
-        * [宿主应用配置](https://github.com/sofastack-guides/kc-sofastack-dynamic-demo#step2--%E5%AE%BF%E4%B8%BB%E5%BA%94%E7%94%A8%E9%85%8D%E7%BD%AE)
-    * [打包 & 启动宿主应用](https://github.com/sofastack-guides/kc-sofastack-dynamic-demo#4%E6%89%93%E5%8C%85--%E5%90%AF%E5%8A%A8%E5%AE%BF%E4%B8%BB%E5%BA%94%E7%94%A8)
-    * [SOFADashboard 添加版本&管理应用](https://github.com/sofastack-guides/kc-sofastack-dynamic-demo#5sofadashboard-%E7%AE%A1%E6%8E%A7%E7%AB%AF%E6%B7%BB%E5%8A%A0%E7%89%88%E6%9C%AC)
-    * [查看详情 & 推送安装命令](https://github.com/sofastack-guides/kc-sofastack-dynamic-demo#6%E6%9F%A5%E7%9C%8B%E8%AF%A6%E6%83%85--%E6%8E%A8%E9%80%81%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4)
+* [实验背景](#%E5%AE%9E%E9%AA%8C%E8%83%8C%E6%99%AF)
+* [实验内容](#%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9)
+* [任务](#%E4%BB%BB%E5%8A%A1)
+    * [任务准备](#1%E4%BB%BB%E5%8A%A1%E5%87%86%E5%A4%87)
+    * [将 SOFABoot 应用打包成 ark 包](#2%E5%B0%86-sofaboot-%E5%BA%94%E7%94%A8%E6%89%93%E5%8C%85%E6%88%90-ark-%E5%8C%85)
+        * [修改动态模块名称](#step1--%E4%BF%AE%E6%94%B9%E5%8A%A8%E6%80%81%E6%A8%A1%E5%9D%97%E5%90%8D%E7%A7%B0)
+        * [配置动态模块的打包插件](#step2--%E9%85%8D%E7%BD%AE%E5%8A%A8%E6%80%81%E6%A8%A1%E5%9D%97%E7%9A%84%E6%89%93%E5%8C%85%E6%8F%92%E4%BB%B6)
+    * [构建宿主应用](#3%E6%9E%84%E5%BB%BA%E5%AE%BF%E4%B8%BB%E5%BA%94%E7%94%A8)
+        * [引入动态模块依赖](#step1--%E5%BC%95%E5%85%A5%E5%8A%A8%E6%80%81%E6%A8%A1%E5%9D%97%E4%BE%9D%E8%B5%96)
+        * [宿主应用配置](#step2--%E5%AE%BF%E4%B8%BB%E5%BA%94%E7%94%A8%E9%85%8D%E7%BD%AE)
+    * [打包 & 启动宿主应用](#4%E6%89%93%E5%8C%85--%E5%90%AF%E5%8A%A8%E5%AE%BF%E4%B8%BB%E5%BA%94%E7%94%A8)
+    * [SOFADashboard 添加版本&管理应用](#5sofadashboard-%E7%AE%A1%E6%8E%A7%E7%AB%AF%E6%B7%BB%E5%8A%A0%E7%89%88%E6%9C%AC)
+    * [查看详情 & 推送安装命令](#6%E6%9F%A5%E7%9C%8B%E8%AF%A6%E6%83%85--%E6%8E%A8%E9%80%81%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4)
 
 ## 实验背景
 
