@@ -1,6 +1,10 @@
 package io.sofastack.stockmng.controller;
 
-import io.sofastack.stockmng.facade.SortedStrategyFacade;
+
+import com.alipay.sofa.runtime.api.annotation.SofaReference;
+import com.alipay.sofa.tracer.plugin.flexible.annotations.Tracer;
+import com.alipay.common.tracer.core.tags.SpanTags;
+import io.sofastack.dynamic.facade.StrategyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,12 +17,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class SortedController {
 
+    @SofaReference
+    private StrategyService strategyService;
+
     @Autowired
-    private SortedStrategyFacade sortedStrategyFacade;
+    io.opentracing.Tracer tracer;
 
     @RequestMapping("/")
+    @Tracer
     public String index(Model model) {
-        model.addAttribute("productList", sortedStrategyFacade.getSorted());
+        try {
+
+            SpanTags.putTags("","");
+            model.addAttribute("name", strategyService.strategy());
+        }catch (Throwable ex){
+            model.addAttribute("name", "DEFAULT BIZ");
+        }
         return "index";
     }
 }

@@ -12,7 +12,7 @@
     <parent>
 		<groupId>com.alipay.sofa</groupId>
 		<artifactId>sofaboot-dependencies</artifactId>
-		<version>3.1.4</version>
+		<version>3.3.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>io.sofastack</groupId>
@@ -23,7 +23,7 @@
 
 	<properties>
 		<java.version>1.8</java.version>
-		<ark.version>0.6.0</ark.version>
+		<ark.version>1.1.1</ark.version>
 		<dashboard.client>1.0.0</dashboard.client>
 		<curator.version>2.9.1</curator.version>
 		<mybatis.version>1.3.2</mybatis.version>
@@ -40,6 +40,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.alipay.sofa</groupId>
+			<artifactId>tracer-sofa-boot-starter</artifactId>
 		</dependency>
 
 	</dependencies>

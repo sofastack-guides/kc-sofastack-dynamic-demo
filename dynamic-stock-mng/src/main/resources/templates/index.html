@@ -8,7 +8,7 @@
             margin: 0;
             padding: 0;
         }
-        .header{
+        .header {
             height: 64px;
             padding: 0 50px;
             line-height: 64px;
@@ -72,29 +72,19 @@
 </head>
 <body>
 
-<header class="header">
-    <div style="width: 80%;margin: 0 auto">
-        <div class="logo">KubeCon DEMO</div>
+<!--<header class="header">-->
+    <!--<div style="width: 80%;margin: 0 auto">-->
+        <!--<div class="logo">KubeCon DEMO</div>-->
+    <!--</div>-->
+<!--</header>-->
+
+<div style="width: 80%; margin: 0 auto">
+    <div style="width: 80%; margin: 20px auto; text-align: center; font-size: 30px;">
+        WelCome To SOFAArk Dynamic Module
     </div>
-
-</header>
-
-<div class="main" style="margin-top: 15px;">
-    <div style="width: 80%;margin: 0 auto">
-        <div class="item-list">
-            <div class="item" th:each="product,productStat:${productList}">
-                <div class="main-cnt">
-                    <div class="name" style="margin-bottom: 3px;" th:text="${product.name}">
-
-                    </div>
-                    <div>
-                        <img th:src="${product.src}" alt="" class="main-img">
-                    </div>
-                    <div></div>
-                    <div style="margin-bottom: 2px;" th:text="${product.author}"></div>
-                </div>
-            </div>
-        </div>
+    <hr/>
+    <div style="width: 80%; margin: 5px auto; text-align: center; font-size: 10px; font-weight: bold">
+        SUPPORT BY: <span th:text="${name}"></span>
     </div>
 </div>
 </body>

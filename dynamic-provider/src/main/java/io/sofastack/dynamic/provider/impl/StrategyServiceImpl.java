@@ -14,6 +14,6 @@ public class StrategyServiceImpl implements StrategyService {
 
     @Override
     public String strategy() {
-        return "order";
+        return "PROVIDE MODULE BIZ";
     }
 }

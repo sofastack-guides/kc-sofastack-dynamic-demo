@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>dynamic-provider-{your-number}</artifactId>
+    <artifactId>dynamic-provider</artifactId>
 
     <dependencies>
         <dependency>
@@ -37,7 +37,25 @@
     <build>
         <plugins>
             <!--这里添加ark 打包插件-->
-
+            <plugin>
+                <groupId>com.alipay.sofa</groupId>
+                <artifactId>sofa-ark-maven-plugin</artifactId>
+                <version>1.1.1</version>
+                <executions>
+                    <execution>
+                        <!--goal executed to generate executable-ark-jar -->
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                        <!--ark-biz 包的打包配置  -->
+                        <configuration>
+                            <!--ark 包和 ark biz 的打包存放目录，默认为工程 build 目录-->
+                            <outputDirectory>../target</outputDirectory>
+                            <bizName>provide</bizName>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 </project>

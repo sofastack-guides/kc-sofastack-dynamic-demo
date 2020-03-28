@@ -20,23 +20,11 @@
         </dependency>
         <dependency>
             <groupId>com.alipay.sofa</groupId>
-            <artifactId>runtime-sofa-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
+            <artifactId>runtime-sofa-boot-plugin</artifactId>
         </dependency>
         <dependency>
             <groupId>io.sofastack</groupId>
             <artifactId>dynamic-facade</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.alipay.sofa</groupId>
-            <artifactId>sofa-dashboard-client</artifactId>
         </dependency>
         <dependency>
             <artifactId>curator-client</artifactId>
@@ -47,14 +35,47 @@
             <groupId>org.apache.curator</groupId>
         </dependency>
         <!-- 这里添加动态模块相关依赖 -->
+        <dependency>
+            <groupId>com.alipay.sofa</groupId>
+           <artifactId>sofa-ark-springboot-starter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>sofa-ark-all</artifactId>
+                    <groupId>com.alipay.sofa</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.alipay.sofa</groupId>
+            <artifactId>web-ark-plugin</artifactId>
+        </dependency>
 
-
+        <dependency>
+            <groupId>com.alipay.sofa</groupId>
+            <artifactId>tracer-sofa-boot-starter</artifactId>
+        </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <!-- 这里配置动态模块打包插件 -->
-
+            <plugin>
+                <groupId>com.alipay.sofa</groupId>
+                <artifactId>sofa-ark-maven-plugin</artifactId>
+                <version>1.1.1</version>
+                <executions>
+                    <execution>
+                        <id>default-cli</id>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <outputDirectory>../target</outputDirectory>
+                    <bizName>stock-mng</bizName>
+                    <webContextPath>/</webContextPath>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
