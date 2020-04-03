@@ -12,7 +12,7 @@
     <parent>
 		<groupId>com.alipay.sofa</groupId>
 		<artifactId>sofaboot-dependencies</artifactId>
-		<version>3.3.0</version>
+		<version>3.3.0-poc-ark-SNAPSHOT</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>io.sofastack</groupId>
